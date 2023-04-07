@@ -16,6 +16,7 @@ export default function VideosPage() {
     return data?.map((video) => {
       let title = 'Default Title'
       let description = 'Default description'
+      const playbackId = video.playback_ids[0].id
       if (video.passthrough) {
         const passthrough = JSON.parse(video.passthrough)
         if (passthrough.title) {
@@ -26,7 +27,8 @@ export default function VideosPage() {
         }
       }
       return {
-        ...video,
+        id: video.id,
+        playbackId,
         title,
         description,
       }
@@ -45,8 +47,8 @@ export default function VideosPage() {
     <>
       <h1>Videos page</h1>
       <div>
-        <ul style={{ listStyle: 'none' }}>
-          {videos.map(({ id, title, description, thumbnailUrl }) => {
+        <ul style={{ listStyle: 'none', padding: 20 }}>
+          {videos.map(({ id, title, description, playbackId }) => {
             return (
               <li
                 key={id}
@@ -54,9 +56,15 @@ export default function VideosPage() {
                   display: 'flex',
                   alignItems: 'center',
                   marginBottom: 10,
+                  border: '1px solid black',
                 }}
               >
-                <img src={thumbnailUrl} width={160} height={90} />
+                <img
+                  src={`https://image.mux.com/${playbackId}/thumbnail.jpg?width=640&height=360`}
+                  width={160}
+                  height={90}
+                  style={{ objectFit: 'contain' }}
+                />
                 <h3 style={{ marginLeft: 10 }}>
                   {title} - {description}
                 </h3>

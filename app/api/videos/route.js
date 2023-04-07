@@ -7,18 +7,7 @@ import Mux from '@mux/mux-node'
 const { Video } = new Mux()
 
 export async function GET(req) {
-  const videoAssets = await Video.Assets.list()
+  const videos = await Video.Assets.list()
 
-  const videosWithPlaybackInfo = videoAssets.map((video) => {
-    const playbackId = video.playback_ids[0].id
-
-    const thumbnailToken = Mux.JWT.signPlaybackId(playbackId, {
-      type: 'thumbnail',
-    })
-    video.thumbnailUrl = `https://image.mux.com/${playbackId}/thumbnail.jpg?token=${thumbnailToken}`
-
-    return video
-  })
-
-  return NextResponse.json(videosWithPlaybackInfo)
+  return NextResponse.json(videos)
 }
