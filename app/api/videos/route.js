@@ -1,13 +1,24 @@
 import { NextResponse } from 'next/server'
 import Mux from '@mux/mux-node'
 
-const { Video } = new Mux(
-  process.env.MUX_TOKEN_ID,
-  process.env.MUX_TOKEN_SECRET
-)
+// Assumes you have your access token set in environment variables:
+// Access Token ID: process.env.MUX_TOKEN_ID
+// Access Token Secret: process.env.MUX_TOKEN_SECRET
+const { Video } = new Mux()
 
 export async function GET(req) {
-  const videos = await Video.Assets.list()
+  const videoAssets = await Video.Assets.list()
 
-  return NextResponse.json(videos)
+  const videosWithPlaybackInfo = videoAssets.map((video) => {
+    const playbackId = video.playback_ids[0].id
+
+    const thumbnailToken = Mux.JWT.signPlaybackId(playbackId, {
+      type: 'thumbnail',
+    })
+    video.thumbnailUrl = `https://image.mux.com/${playbackId}/thumbnail.jpg?token=${thumbnailToken}`
+
+    return video
+  })
+
+  return NextResponse.json(videosWithPlaybackInfo)
 }

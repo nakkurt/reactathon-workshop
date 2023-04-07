@@ -45,11 +45,21 @@ export default function VideosPage() {
     <>
       <h1>Videos page</h1>
       <div>
-        <ul>
-          {videos.map(({ id, title, description }) => {
+        <ul style={{ listStyle: 'none' }}>
+          {videos.map(({ id, title, description, thumbnailUrl }) => {
             return (
-              <li key={id}>
-                {title} - {description}
+              <li
+                key={id}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginBottom: 10,
+                }}
+              >
+                <img src={thumbnailUrl} width={160} height={90} />
+                <h3 style={{ marginLeft: 10 }}>
+                  {title} - {description}
+                </h3>
               </li>
             )
           })}
