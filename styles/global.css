@@ -1,0 +1,31 @@
+main {
+  padding: 20px 20px 60px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid #efefef;
+  margin: 3em auto;
+}
+
+ul {
+  padding: 20;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10;
+  border: 1px solid black;
+}
+
+img {
+  object-fit: contain;
+}
+
+h3 {
+  margin-left: 10px;
+}
