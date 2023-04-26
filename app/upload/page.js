@@ -32,9 +32,9 @@ export default function Upload() {
   }
 
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+    <>
       <Link href="/">Home</Link>
-      <h1>Upload a video</h1>
+      <h1>Video Upload</h1>
       <form onSubmit={handleCreateUploadUrlSubmit}>
         <label
           htmlFor="title"
@@ -91,6 +91,6 @@ export default function Upload() {
           <MuxUploader endpoint={uploadUrl} />
         </>
       )}
-    </div>
+    </>
   )
 }
