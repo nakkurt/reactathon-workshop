@@ -1,52 +1,35 @@
 'use client'
 
 import React, { useState } from 'react'
-import MuxUploader from '@mux/mux-uploader-react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 export default function Upload() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [uploadUrl, setUploadUrl] = useState('')
+  const router = useRouter()
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value)
-  }
-
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value)
-  }
-
-  const handleCreateUploadUrlSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await fetch('/api/uploads', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title, description }),
-    })
-
-    const data = await response.json()
-    setUploadUrl(data.url)
+    router.push(`/upload/upload?title=${title}&description=${description}`)
   }
 
   return (
     <>
       <Link href="/">Home</Link>
       <h1>Video Upload</h1>
-      <form onSubmit={handleCreateUploadUrlSubmit}>
+      <form onSubmit={handleSubmit}>
         <label
           htmlFor="title"
           style={{ display: 'block', marginBottom: '5px' }}
         >
           Title
           <input
-            id="title"
+            name="title"
             type="text"
-            value={title}
-            onChange={handleTitleChange}
             placeholder="Enter video title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             style={{
               width: '100%',
               padding: '8px',
@@ -54,7 +37,6 @@ export default function Upload() {
               border: '1px solid #ccc',
               marginBottom: '10px',
             }}
-            disabled={!!uploadUrl}
           />
         </label>
         <label
@@ -63,10 +45,10 @@ export default function Upload() {
         >
           Description
           <textarea
-            id="description"
-            value={description}
-            onChange={handleDescriptionChange}
+            name="description"
             placeholder="Enter video description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             style={{
               width: '100%',
               padding: '8px',
@@ -74,23 +56,16 @@ export default function Upload() {
               border: '1px solid #ccc',
               marginBottom: '10px',
             }}
-            disabled={!!uploadUrl}
           />
         </label>
         <button
-          disabled={!!uploadUrl}
           type="submit"
           style={{ padding: '10px 20px' }}
+          disabled={!title.trim() || !description.trim()}
         >
           Create Upload URL
         </button>
       </form>
-      {!!uploadUrl && (
-        <>
-          <hr />
-          <MuxUploader endpoint={uploadUrl} />
-        </>
-      )}
     </>
   )
 }
