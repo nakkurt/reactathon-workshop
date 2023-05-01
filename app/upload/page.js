@@ -23,10 +23,7 @@ export default function Upload() {
       </Link>
       <h1>Video Upload</h1>
       <form onSubmit={handleSubmit}>
-        <label
-          htmlFor="title"
-          style={{ display: 'block', marginBottom: '5px' }}
-        >
+        <label htmlFor="title">
           Title
           <input
             name="title"
@@ -34,39 +31,18 @@ export default function Upload() {
             placeholder="Enter video title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '8px',
-              borderRadius: '2px',
-              border: '1px solid #ccc',
-              marginBottom: '10px',
-            }}
           />
         </label>
-        <label
-          htmlFor="description"
-          style={{ display: 'block', marginBottom: '5px' }}
-        >
+        <label htmlFor="description">
           Description
           <textarea
             name="description"
             placeholder="Enter video description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '8px',
-              borderRadius: '2px',
-              border: '1px solid #ccc',
-              marginBottom: '10px',
-            }}
           />
         </label>
-        <button
-          type="submit"
-          style={{ padding: '10px 20px' }}
-          disabled={!title.trim() || !description.trim()}
-        >
+        <button type="submit" disabled={!title.trim() || !description.trim()}>
           Create Upload URL
         </button>
       </form>
