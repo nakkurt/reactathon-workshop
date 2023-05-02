@@ -5,6 +5,8 @@ import MuxPlayer from '../../components/MuxPlayer'
 import AboutVideoForPlaybackId from './AboutVideoForPlaybackId'
 import CommentsList from './CommentsList'
 
+export const revalidate = 3600 // revalidate every hour
+
 const Video = async ({ params }) => {
   const { playbackId } = params
 

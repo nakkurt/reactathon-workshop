@@ -1,4 +1,4 @@
-import { cache, Suspense } from 'react'
+import { cache } from 'react'
 import ClickToLikeContainer from './ClickToLikeContainer'
 
 const getComments = cache(async (playbackId) => {

@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { listAssets } from '../../server-lib/Mux.js'
 import AboutVideo from './AboutVideo.js'
 
+export const revalidate = 10 // revalidate every 10 seconds
+
 export default async function VideosPage() {
   const assets = await listAssets()
   return (
