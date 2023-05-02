@@ -42,7 +42,11 @@ export default function Upload() {
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
-        <button type="submit" disabled={!title.trim() || !description.trim()}>
+        <button
+          type="submit"
+          className="create-url"
+          disabled={!title.trim() || !description.trim()}
+        >
           Create Upload URL
         </button>
       </form>
