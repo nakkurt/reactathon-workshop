@@ -1,4 +1,5 @@
 import { cache } from 'react'
+import { fromUnixTime, format } from 'date-fns'
 import ClickToLikeContainer from './ClickToLikeContainer'
 
 const getComments = cache(async (playbackId) => {
@@ -18,7 +19,9 @@ async function CommentsList({ playbackId }) {
             <ClickToLikeContainer>
               <p>{comment.content}</p>
               <p>
-                <i>{new Date(comment.updated_at).toLocaleDateString()}</i>
+                <i>
+                  {format(fromUnixTime(comment.updated_at), 'MM/dd/yyyy hh:mm')}
+                </i>
               </p>
             </ClickToLikeContainer>
           </li>
