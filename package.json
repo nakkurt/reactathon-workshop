@@ -8,15 +8,15 @@
   },
   "dependencies": {
     "@mux/mux-node": "^7.3.0",
-    "@mux/mux-player-react": "^1.9.0",
-    "@mux/mux-uploader-react": "^1.0.0-beta.6",
-    "next": "^13.3.0",
+    "@mux/mux-player-react": "^1.10.1",
+    "@mux/mux-uploader-react": "^1.0.0-beta.7",
+    "next": "^13.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.33",
-    "prettier": "^2.8.7"
+    "@types/node": "18.16.3",
+    "@types/react": "18.2.0",
+    "prettier": "^2.8.8"
   }
 }
