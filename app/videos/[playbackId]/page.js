@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import MuxPlayer from '../../_components/MuxPlayer'
+import MuxPlayer from '../../components/MuxPlayer'
 import AboutVideoForPlaybackId from './AboutVideoForPlaybackId'
 import Comments from './Comments'
 

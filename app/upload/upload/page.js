@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import MuxUploader from '../../_components/MuxUploader'
+import MuxUploader from '../../components/MuxUploader'
 import { Video } from '../../../server-lib/Mux'
 
 export default async function Upload({ _, searchParams }) {
