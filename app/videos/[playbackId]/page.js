@@ -1,8 +1,11 @@
+import { Suspense } from 'react'
 import Link from 'next/link'
 
 import MuxPlayer from '../../components/MuxPlayer'
 import AboutVideoForPlaybackId from './AboutVideoForPlaybackId'
-import Comments from './Comments'
+import CommentsList from './CommentsList'
+
+export const revalidate = 3600 // revalidate every hour
 
 const Video = async ({ params }) => {
   const { playbackId } = params
@@ -23,8 +26,13 @@ const Video = async ({ params }) => {
           }}
         />
       </div>
-      <AboutVideoForPlaybackId playbackId={playbackId} />
-      <Comments playbackId={playbackId} />
+      <Suspense fallback={<p>loading...</p>}>
+        <AboutVideoForPlaybackId playbackId={playbackId} />
+      </Suspense>
+      <h3>Comments</h3>
+      <Suspense fallback={<p>loading...</p>}>
+        <CommentsList playbackId={playbackId} />
+      </Suspense>
     </>
   )
 }
