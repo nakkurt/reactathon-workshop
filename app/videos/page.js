@@ -1,23 +1,22 @@
-import { listAssets } from "../../server-lib/Mux.js";
-import AboutVideo from "./AboutVideo.js";
+"use client"
 
-async function Videos() {
-  // NO LONGER NEEDED, BECAUSE THIS PAGE IS NOW SERVER-SIDE RENDERED. 
-  // const [assets, setAssets] = useState([]);
-  // useEffect(() => {
-    // async function fetchAssets() {
-    //   const response = await fetch('/api/videos')
-    //   if (!response.ok) {
-    //     throw new Error("Network response was not OK:" + response.statusText)
-    //   }
-    //   const data = await response.json()
-    //   setAssets(data)
-    // }
-    // fetchAssets()
-    // },[])
+import { useEffect, useState } from "react";
+import AboutVideo from "./AboutVideo";
 
-    const assets = await listAssets()
+function Videos() {
+  const [assets, setAssets] = useState([]);
 
+  useEffect(() => {
+    async function fetchAssets() {
+      const response = await fetch('/api/videos')
+      if (!response.ok) {
+        throw new Error("Network response was not OK:" + response.statusText)
+      }
+      const data = await response.json()
+      setAssets(data)
+    }
+    fetchAssets()
+    },[])
     return (
       <>
         <h1>All Videos</h1>
