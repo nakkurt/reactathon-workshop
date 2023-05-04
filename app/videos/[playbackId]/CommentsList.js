@@ -20,7 +20,7 @@ async function CommentsList({ playbackId }) {
               <p>{comment.content}</p>
               <p>
                 <i>
-                  {format(fromUnixTime(comment.updated_at), 'MM/dd/yyyy hh:mm')}
+                  {format(fromUnixTime(comment.updated_at / 1000), 'MM/dd/yyyy hh:mm')}
                 </i>
               </p>
             </ClickToLikeContainer>
