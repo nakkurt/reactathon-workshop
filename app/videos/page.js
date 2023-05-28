@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { listAssets } from "../../server-lib/Mux.js";
 import AboutVideo from "./AboutVideo.js";
 
@@ -28,12 +29,14 @@ async function Videos() {
               const playbackId = asset.playback_ids[0].id
               return (
                 <li key={assetId}>
-                  <img
-                    src={`https://image.mux.com/${playbackId}/thumbnail.jpg?width=640&height=360`}
-                    width={160}
-                    height={90}
-                  />
-                  <AboutVideo asset={asset} />
+                  <Link href={`/videos/${playbackId}`}>
+                    <img
+                      src={`https://image.mux.com/${playbackId}/thumbnail.jpg?width=640&height=360`}
+                      width={160}
+                      height={90}
+                    />
+                    <AboutVideo asset={asset} />
+                  </Link>
                 </li>
               )
             })

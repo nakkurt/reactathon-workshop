@@ -1,6 +1,7 @@
 import { fromUnixTime, format } from 'date-fns'
 
 const AboutVideo = ({ asset }) => {
+  console.log(asset)
   let title = 'Default Title'
   let description = 'Default description'
   let datetime = new Date()
